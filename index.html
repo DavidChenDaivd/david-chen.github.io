@@ -11,69 +11,65 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     
    <style>
-  /* ---------------------------------------------------------- */
-  /* 移动端适配代码 (Mobile Responsive Styles)                  */
-  /* ---------------------------------------------------------- */
+  /* 默认样式（电脑端保持不变） */
   
+  /* 手机端样式：当屏幕宽度小于 600px 时生效 */
   @media screen and (max-width: 600px) {
-    
-    /* 1. 彻底打破表格结构，强制垂直堆叠，内容全部居中 */
+    /* 1. 让所有表格单元格变成垂直堆叠，并强制居中 */
     table, tbody, tr, td {
       display: block !important;
       width: 100% !important;
       box-sizing: border-box;
-      text-align: center !important; /* 让文字水平居中 */
+      text-align: center !important; /* 关键：让所有内容在手机上居中 */
+    }
+    
+    /* 2. 这里的代码专门修复 Bio 区域 */
+    
+    /* 修复名字：强制放大、加粗 */
+    .name {
+      font-size: 36px !important; /* 字号加大 */
+      font-weight: 700 !important; /* 加粗 */
+      margin-top: 30px !important;
+      margin-bottom: 20px !important;
+      display: block !important;
+    }
+
+    /* 修复头像：放大，居中，保持阴影 */
+    .hoverZoomLink {
+      width: 60% !important; /* 在手机上占据 60% 的宽度 */
+      max-width: 250px !important; /* 限制最大宽度 */
+      height: auto !important;
+      margin: 0 auto 30px auto !important; /* 居中，并在下方加留白 */
+      display: block;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* 调整 Bio 文字的边距，防止太贴屏幕边缘 */
+    td[style*="width:63%"] {
+      padding: 0 20px !important;
+    }
+
+    /* 3. 针对 Experience 区域的调整 (保持之前的优化) */
+    
+    /* 让 WKU 图标在手机上大小适中 */
+    img[src*="WKU"] {
+      max-width: 100px !important;
+      margin: 20px auto 10px auto !important;
+      display: block;
+    }
+    
+    /* 调整 Experience 右侧文字的内边距 */
+    td[style*="padding-left:20px"] {
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
-
-    /* 2. 名字：超大号 + 全大写 + 粗体 */
-    .name {
-      font-size: 40px !important;        /* 字号加大 */
-      font-weight: 800 !important;       /* 特粗 */
-      text-transform: uppercase !important; /* 强制变大写: Zirui Chen -> ZIRUI CHEN */
-      margin-top: 30px !important;
-      margin-bottom: 10px !important;
-      line-height: 1.2 !important;
-    }
-
-    /* 3. 头像：巨大化 + 绝对居中 */
-    /* 注意：这里我们要精准打击 img 标签 */
-    a[href*="Davidchen"] img {
-      width: 80% !important;           /* 占据屏幕宽度的 80%，非常显眼 */
-      max-width: 320px !important;     /* 上限 320px */
-      height: auto !important;
-      display: block !important;       /* 变成块级元素才能用 margin: auto */
-      margin-left: auto !important;    /* 左边自动挤压 */
-      margin-right: auto !important;   /* 右边自动挤压 -> 结果就是居中 */
-      margin-bottom: 30px !important;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important; /* 加深阴影，更立体 */
-    }
-
-    /* 4. 微调简介文字的边距，防止贴边 */
-    td p {
-      padding-left: 20px !important;
-      padding-right: 20px !important;
-      text-align: justify !important; /* 让大段文字两端对齐，看起来更整齐 */
-      text-justify: inter-word !important;
-    }
     
-    /* 名字下方的联系方式居中 */
-    td p[style*="text-align:center"] {
-        text-align: center !important;
+    /* 隐藏部分不适合手机显示的元素（如多余的空行） */
+    br {
+        content: " ";
+        display: block;
+        margin: 5px 0;
     }
-
-    /* 5. Experience 区域修复 */
-    img[src*="WKU"] {
-      max-width: 120px !important;     /* WKU图标大小 */
-      margin: 20px auto 10px auto !important;
-      display: block !important;
-    }
-    
-    /* 隐藏多余空行 */
-    br { display: none; }
-    /* 但恢复某些必要的换行 */
-    .name + br { display: block; } 
   }
 </style>
     

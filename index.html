@@ -9,37 +9,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <style>
-  /* 默认样式（电脑端保持不变） */
-  
-  /* 手机端样式：当屏幕宽度小于 600px 时生效 */
-  @media screen and (max-width: 600px) {
-    /* 让所有表格单元格变成块级元素，也就是从“左右排”变成“上下排” */
+    
+   <style>
+  /* 📱 手机端适配代码 (Mobile Responsive) */
+  @media screen and (max-width: 768px) {
+    
+    /* 1. 强制表格变成“积木堆叠”模式 (上下排列) */
     table, tbody, tr, td {
       display: block !important;
       width: 100% !important;
-      box-sizing: border-box;
+      box-sizing: border-box; /* 防止padding撑爆屏幕 */
+      height: auto !important; /* 让高度自动适应内容 */
     }
-    
-    /* 针对 Experience 区域的特殊调整 */
-    /* 让图标在手机上居中，并且稍微大一点 */
-    td img {
-      max-width: 100px !important; /* 手机上限制最大宽度 */
-      margin: 0 auto 10px auto !important; /* 居中，并在下方加点间距 */
-      display: block;
+
+    /* 2. 修复 Bio 区域 (头像和简介) */
+    td[style*="width:63%"], 
+    td[style*="width:37%"] {
+      width: 100% !important;
+      padding: 10px !important; /* 减少内边距 */
+      text-align: center; /* 手机上文字居中通常更好看 */
     }
-    
-    /* 让文字部分去除左侧的内边距，因为现在是上下结构了 */
-    td[style*="padding-left:20px"] {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-      text-align: center; /* 手机上也许文字居中更好看，你可以选 */
-    }
-    
-    /* 调整 Bio 里的头像，在手机上居中 */
+
+    /* 3. 修复 Bio 头像 */
     .hoverZoomLink {
-      margin: 0 auto;
+      margin: 20px auto 0 auto !important; /* 图片上下加点空隙，水平居中 */
       display: block;
+      max-width: 150px !important; /* 手机上头像稍微小一点，更精致 */
+    }
+
+    /* 4. 修复 Experience 区域 (图标和文字) */
+    /* 针对左侧图标列 */
+    td[style*="width:15%"] {
+      width: 100% !important;
+      text-align: center !important;
+      padding: 20px 0 0 0 !important; /* 图标上方留白 */
+    }
+    /* 针对右侧文字列 */
+    td[style*="width:85%"] {
+      width: 100% !important;
+      text-align: center !important; /* 文字也居中 */
+      padding: 10px 20px 30px 20px !important; /* 上下左右留白 */
+    }
+    
+    /* 5. 调整 Experience 日期显示 */
+    /* 让原本向右浮动的日期，在手机上变成块级元素，跑上去或者居中 */
+    span[style*="float:right"] {
+      float: none !important;
+      display: block;
+      margin-bottom: 5px;
+      color: #888;
+    }
+
+    /* 6. 调整字体大小，防止太挤 */
+    p, a, span {
+      font-size: 16px !important; /* 保证手机上字号适中 */
+      line-height: 1.6 !important; /* 行距大一点，易读 */
     }
   }
 </style>

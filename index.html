@@ -19,52 +19,56 @@
     table, tbody, tr, td {
       display: block !important;
       width: 100% !important;
+      max-width: 100% !important; /* 关键修复：允许单元格占满全屏宽度 */
+      height: auto !important;      /* 防止高度被锁定 */
       box-sizing: border-box;
-      text-align: center !important; /* 关键：让所有内容在手机上居中 */
+      text-align: center !important;
     }
     
     /* 2. 这里的代码专门修复 Bio 区域 */
     
-    /* 修复名字：强制放大、加粗 */
+    /* 修复名字 */
     .name {
-      font-size: 36px !important; /* 字号加大 */
-      font-weight: 700 !important; /* 加粗 */
+      font-size: 36px !important;
+      font-weight: 700 !important;
       margin-top: 30px !important;
       margin-bottom: 20px !important;
       display: block !important;
     }
 
-    /* 修复头像：放大，居中，保持阴影 */
+    /* 修复头像：放大，居中 */
     .hoverZoomLink {
-      width: 60% !important; /* 在手机上占据 60% 的宽度 */
-      max-width: 250px !important; /* 限制最大宽度 */
+      width: 60% !important;
+      max-width: 250px !important;
       height: auto !important;
-      margin: 0 auto 30px auto !important; /* 居中，并在下方加留白 */
-      display: block;
+      margin: 0 auto 30px auto !important; /* auto 负责左右居中 */
+      display: block !important; /* 强制块级显示 */
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
+    
+    /* 额外保险：确保包裹图片的 a 标签也是块级的，防止它作为行内元素干扰居中 */
+    td > a {
+        display: block;
+        width: 100%;
+    }
 
-    /* 调整 Bio 文字的边距，防止太贴屏幕边缘 */
+    /* 调整 Bio 文字的边距 */
     td[style*="width:63%"] {
       padding: 0 20px !important;
     }
 
-    /* 3. 针对 Experience 区域的调整 (保持之前的优化) */
-    
-    /* 让 WKU 图标在手机上大小适中 */
+    /* 3. 针对 Experience 区域的调整 */
     img[src*="WKU"] {
       max-width: 100px !important;
       margin: 20px auto 10px auto !important;
       display: block;
     }
     
-    /* 调整 Experience 右侧文字的内边距 */
     td[style*="padding-left:20px"] {
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
     
-    /* 隐藏部分不适合手机显示的元素（如多余的空行） */
     br {
         content: " ";
         display: block;
@@ -100,7 +104,7 @@
                 </p>
               </td>
               <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/Davidchen.jpg"><img style="width:100%; max-width:180px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" alt="profile photo" src="images/Davidchen.jpg" class="hoverZoomLink"></a>
+                <a href="images/Davidchen.jpg"><img style="width:100%; max-width:160; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" alt="profile photo" src="images/Davidchen.jpg" class="hoverZoomLink"></a>
             </tr>
           </tbody></table>
 
